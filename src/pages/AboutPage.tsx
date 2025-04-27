@@ -57,12 +57,12 @@ const AboutPage = () => {
     {
       icon: Zap,
       title: 'Innovation',
-      description: 'We constantly push the boundaries of what's possible in Web3, developing cutting-edge solutions to complex problems.'
+      description: "We constantly push the boundaries of what's possible in Web3, developing cutting-edge solutions to complex problems."
     },
     {
       icon: Globe,
       title: 'Accessibility',
-      description: 'We're committed to making Web3 technology accessible to everyone, regardless of technical expertise or background.'
+      description: "We're committed to making Web3 technology accessible to everyone, regardless of technical expertise or background."
     }
   ];
 
