@@ -4,8 +4,13 @@ import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Building, Users, ArrowRight } from 'lucide-react';
+import { WalletConnector } from '@/components/WalletConnector';
 
 const BuildersPage = () => {
+  const handleStartBuilding = () => {
+    window.open('https://docs.blazze.io/developers', '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-blazze-dark text-blazze-text">
       <NavBar />
@@ -21,11 +26,15 @@ const BuildersPage = () => {
               <p className="text-xl text-blazze-text-muted mb-10">
                 Tools and resources for developers building the future of Web3.
               </p>
-              <Button 
-                className="bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white px-8 py-6 rounded-full text-lg"
-              >
-                Start Building <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <WalletConnector />
+                <Button 
+                  className="bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white px-8 py-6 rounded-full text-lg"
+                  onClick={handleStartBuilding}
+                >
+                  Start Building <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
             </div>
           </div>
         </section>

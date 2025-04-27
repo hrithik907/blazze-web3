@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { ArrowRight, Shield, Globe, Zap, Wallet, CreditCard, Users } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const FeatureCard = ({ 
   icon: Icon, 
@@ -91,11 +91,13 @@ const FeaturesSection = () => {
         </div>
         
         <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: '0.6s' }}>
-          <Button 
-            className="bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white rounded-full px-8 py-6 text-lg"
-          >
-            Explore All Features <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <Link to="/features">
+            <Button 
+              className="bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white rounded-full px-8 py-6 text-lg"
+            >
+              Explore All Features <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

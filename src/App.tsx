@@ -33,6 +33,9 @@ const App = () => (
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/card" element={<CardPage />} />
             <Route path="/auth" element={<AuthPage />} />
+            <Route path="/features" element={<FeaturesPage />} />
+            <Route path="/tokenomics" element={<TokenomicsPage />} />
+            <Route path="/contact-sales" element={<ContactSales />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

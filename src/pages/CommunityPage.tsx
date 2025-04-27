@@ -4,6 +4,7 @@ import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Users, Building, ArrowRight } from 'lucide-react';
+import { WalletConnector } from '@/components/WalletConnector';
 
 const CommunityPage = () => {
   return (
@@ -21,11 +22,15 @@ const CommunityPage = () => {
               <p className="text-xl text-blazze-text-muted mb-10">
                 Connect with fellow BLAZZE enthusiasts and shape the future of Web3.
               </p>
-              <Button 
-                className="bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white px-8 py-6 rounded-full text-lg"
-              >
-                Join Community <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <WalletConnector />
+                <Button 
+                  className="bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white px-8 py-6 rounded-full text-lg"
+                  onClick={() => window.open('https://discord.gg/blazze', '_blank')}
+                >
+                  Join Discord <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
             </div>
           </div>
         </section>
