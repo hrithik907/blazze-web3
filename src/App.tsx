@@ -8,6 +8,9 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import DiscoverPage from "./pages/DiscoverPage";
+import BusinessPage from "./pages/BusinessPage";
+import BuildersPage from "./pages/BuildersPage";
+import CommunityPage from "./pages/CommunityPage";
 import CardPage from "./pages/CardPage";
 import AuthPage from "./pages/AuthPage";
 import NotFound from "./pages/NotFound";
@@ -25,6 +28,9 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/discover" element={<DiscoverPage />} />
+            <Route path="/business" element={<BusinessPage />} />
+            <Route path="/builders" element={<BuildersPage />} />
+            <Route path="/community" element={<CommunityPage />} />
             <Route path="/card" element={<CardPage />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="*" element={<NotFound />} />

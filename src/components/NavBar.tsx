@@ -5,6 +5,7 @@ import { Menu, X, ChevronDown, Wallet, LogOut } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+import { WalletConnector } from './WalletConnector';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -95,11 +96,7 @@ const NavBar = () => {
           </div>
           {user ? (
             <div className="flex items-center space-x-4">
-              <Button 
-                className="bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white rounded-full px-6"
-              >
-                <Wallet className="mr-2 h-4 w-4" /> Connect Wallet
-              </Button>
+              <WalletConnector />
               <Button
                 variant="ghost"
                 onClick={handleSignOut}
@@ -109,12 +106,15 @@ const NavBar = () => {
               </Button>
             </div>
           ) : (
-            <Button 
-              onClick={() => navigate('/auth')}
-              className="bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white rounded-full px-6"
-            >
-              Sign In
-            </Button>
+            <div className="flex items-center space-x-4">
+              <WalletConnector />
+              <Button 
+                onClick={() => navigate('/auth')}
+                className="bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white rounded-full px-6"
+              >
+                Sign In
+              </Button>
+            </div>
           )}
         </div>
 
@@ -149,22 +149,16 @@ const NavBar = () => {
               </Link>
             </div>
           ))}
-          <div className="mt-4">
+          <div className="mt-4 space-y-2">
+            <WalletConnector />
             {user ? (
-              <div className="space-y-2">
-                <Button 
-                  className="w-full bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white rounded-full"
-                >
-                  <Wallet className="mr-2 h-4 w-4" /> Connect Wallet
-                </Button>
-                <Button
-                  variant="ghost"
-                  onClick={handleSignOut}
-                  className="w-full text-blazze-text hover:text-white"
-                >
-                  <LogOut className="h-4 w-4 mr-2" /> Sign Out
-                </Button>
-              </div>
+              <Button
+                variant="ghost"
+                onClick={handleSignOut}
+                className="w-full text-blazze-text hover:text-white"
+              >
+                <LogOut className="h-4 w-4 mr-2" /> Sign Out
+              </Button>
             ) : (
               <Button 
                 onClick={() => navigate('/auth')}
