@@ -9,18 +9,30 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      Alert: {
+      profiles: {
         Row: {
-          Error: boolean
-          id: number
+          avatar_url: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          updated_at: string
+          username: string | null
         }
         Insert: {
-          Error: boolean
-          id?: number
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          updated_at?: string
+          username?: string | null
         }
         Update: {
-          Error?: boolean
-          id?: number
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          username?: string | null
         }
         Relationships: []
       }
@@ -29,16 +41,19 @@ export type Database = {
           Email: string | null
           id: number
           Name: string
+          password: string
         }
         Insert: {
           Email?: string | null
           id?: number
           Name: string
+          password: string
         }
         Update: {
           Email?: string | null
           id?: number
           Name?: string
+          password?: string
         }
         Relationships: []
       }

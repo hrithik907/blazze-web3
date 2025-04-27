@@ -1,12 +1,16 @@
-
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown, Wallet } from 'lucide-react';
+import { Menu, X, ChevronDown, Wallet, LogOut } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +24,16 @@ const NavBar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleSignOut = async () => {
+    try {
+      await supabase.auth.signOut();
+      toast.success('Successfully signed out');
+      navigate('/');
+    } catch (error: any) {
+      toast.error('Error signing out');
+    }
+  };
 
   const navLinks = [
     { title: 'Discover', path: '/discover', submenu: true },
@@ -79,11 +93,29 @@ const NavBar = () => {
               </div>
             ))}
           </div>
-          <Button 
-            className="bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white rounded-full px-6"
-          >
-            <Wallet className="mr-2 h-4 w-4" /> Connect Wallet
-          </Button>
+          {user ? (
+            <div className="flex items-center space-x-4">
+              <Button 
+                className="bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white rounded-full px-6"
+              >
+                <Wallet className="mr-2 h-4 w-4" /> Connect Wallet
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={handleSignOut}
+                className="text-blazze-text hover:text-white"
+              >
+                <LogOut className="h-4 w-4 mr-2" /> Sign Out
+              </Button>
+            </div>
+          ) : (
+            <Button 
+              onClick={() => navigate('/auth')}
+              className="bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white rounded-full px-6"
+            >
+              Sign In
+            </Button>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -118,11 +150,29 @@ const NavBar = () => {
             </div>
           ))}
           <div className="mt-4">
-            <Button 
-              className="w-full bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white rounded-full"
-            >
-              <Wallet className="mr-2 h-4 w-4" /> Connect Wallet
-            </Button>
+            {user ? (
+              <div className="space-y-2">
+                <Button 
+                  className="w-full bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white rounded-full"
+                >
+                  <Wallet className="mr-2 h-4 w-4" /> Connect Wallet
+                </Button>
+                <Button
+                  variant="ghost"
+                  onClick={handleSignOut}
+                  className="w-full text-blazze-text hover:text-white"
+                >
+                  <LogOut className="h-4 w-4 mr-2" /> Sign Out
+                </Button>
+              </div>
+            ) : (
+              <Button 
+                onClick={() => navigate('/auth')}
+                className="w-full bg-gradient-to-r from-blazze-primary to-blazze-secondary hover:opacity-90 transition-opacity text-white rounded-full"
+              >
+                Sign In
+              </Button>
+            )}
           </div>
         </div>
       </div>
